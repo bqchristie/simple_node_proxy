@@ -1,0 +1,24 @@
+{
+  "name": "simple_node_proxy",
+  "version": "1.0.0",
+  "description": "http://en.wikipedia.org/wiki/Cross-origin_resource_sharing",
+  "main": "app.js",
+  "dependencies": {
+    "http": "0.0.0",
+    "http-proxy": "^1.8.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bqchristie/simple_node_proxy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bqchristie/simple_node_proxy/issues"
+  },
+  "homepage": "https://github.com/bqchristie/simple_node_proxy"
+}
