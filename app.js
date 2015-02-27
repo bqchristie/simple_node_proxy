@@ -4,13 +4,21 @@
 var http = require('http'),
     httpProxy = require('http-proxy');
 
-var proxy =  httpProxy.createProxyServer({target:'http://localhost:9000'}).listen(5000);
+var config = {
+    whereLocalServicesAreRunning : 'http://localhost:9000',
+    whereLocalWebAppIsRunning : 'http://localhost:2000',
+    portToInterceptServiceCallsFromWebApp : 5000
+}
+
+
+var proxy =  httpProxy.createProxyServer({target:config.whereLocalServicesAreRunning}).listen(config.portToInterceptServiceCallsFromWebApp);
 
 proxy.on('proxyRes', function(proxyReq, req, res, options) {
     // add the CORS header to the response
-    res.setHeader('Access-Control-Allow-Origin: http://localhost:8000');
-    res.setHeader('Access-Control-Allow-Methods: GET, POST, PUT');
-    res.setHeader('Access-Control-Allow-Headers: Content-Type');
+    res.setHeader('Access-Control-Allow-Origin',config.whereLocalWebAppIsRunning);
+    res.setHeader('Access-Control-Allow-Credentials',true);
+    res.setHeader('Access-Control-Allow-Methods','GET, POST, PUT');
+    res.setHeader('Access-Control-Allow-Headers','Content-Type');
 });
 
 proxy.on('error', function(e) {
